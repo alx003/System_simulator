@@ -39,7 +39,7 @@ def make_choice(h, a, s, r, msg, is_resistance=False):
     st.session_state.log.append(f"<div class='{shake_class}' style='color:{color}'>[{label}] {msg}</div>")
     st.session_state.step += 1
 
-st.title("🤓The Systemic Logic Simulator: Unraveling the Knot")
+st.title("🥸The Systemic Logic Simulator: Unraveling the Knot")
 st.write("---")
 
 with st.sidebar:
@@ -58,26 +58,26 @@ with st.sidebar:
 if st.session_state.step == 0:
     st.subheader("Scenario 1: The Lunar New Year Dinner (China)")
     st.image('new_year_dinner.png')
-    st.info("Relative: 'Allison, you are getting older. You should focus on finding a stable job near home to support your future family.'")
+    st.info("Relative🙎🏻‍♀️: 'Allison, you are getting older. You should focus on finding a stable job near home to support your future family.'")
     c1, c2 = st.columns(2)
     with c1:
-        if st.button("Smile and nod: 'I'll consider it, thank you.'"):
+        if st.button("Smile and nod🙂‍↕️: 'I'll consider it, thank you.'"):
             make_choice(15, -10, 10, -5, "Path of Least Resistance: You maintained the family peace.")
     with c2:
-        if st.button("Challenge: 'My career goals are not limited by my gender.'"):
+        if st.button("Challenge😬: 'My career goals are not limited by my gender.'"):
             make_choice(-20, 20, -15, 20, "System Friction: Tension rises at the table.", True)
 
 # Scene 2: American Work Environment Implicit bias
 elif st.session_state.step == 1:
     st.subheader("Scenario 2: The STEM Lab Meeting (USA)")
     st.image('lab.png')
-    st.info("A male colleague repeats your idea from 5 minutes ago and the professor praises HIM for it.")
+    st.info("🧑🏼‍🔬A male colleague repeats your idea from 5 minutes ago and the professor praises HIM for it.")
     c1, c2 = st.columns(2)
     with c1:
-        if st.button("Stay silent to avoid being seen as 'aggressive'."):
+        if st.button("😶Stay silent to avoid being seen as 'aggressive'."):
             make_choice(10, -15, 10, -10, "Passive Acceptance: The system rewards your 'politeness'.")
     with c2:
-        if st.button("Interject: 'I'm glad you agree with the point I made earlier.'"):
+        if st.button("🤓Interject: 'I'm glad you agree with the point I made earlier.'"):
             make_choice(-10, 15, -10, 15, "Subtle Resistance: You claimed your space.", True)
 
 # Scene 3: Gendered praise
@@ -87,10 +87,10 @@ elif st.session_state.step == 2:
     st.info("A mentor says: 'I love how you are so helpful and never cause trouble in the department.'")
     c1, c2 = st.columns(2)
     with c1:
-        if st.button("Accept the compliment and offer to do more admin work."):
+        if st.button("🙂Accept the compliment and offer to do more admin work."):
             make_choice(20, -20, 15, -15, "Self-Marginalization: You accepted the 'supportive' role.")
     with c2:
-        if st.button("Pivot: 'I'd rather focus on the leading my research project.'"):
+        if st.button("🙃Pivot: 'I'd rather focus on the leading my research project.'"):
             make_choice(-5, 20, -5, 10, "Reframing: You rejected the 'nurturer' label.", True)
 
 # Scene 4: Emotional Labor
@@ -113,10 +113,10 @@ elif st.session_state.step == 4:
     st.info("You are offered a promotion, but you're told to 'soften your leadership style' to better fit the culture.")
     c1, c2 = st.columns(2)
     with c1:
-        if st.button("Adapt your personality to get the power."):
+        if st.button("😶‍🌫️Adapt your personality to get the power."):
             make_choice(10, -30, 20, -5, "Strategic Compliance: You gained power but lost yourself.")
     with c2:
-        if st.button("Refuse to perform gender: 'Judge me by my results.'"):
+        if st.button("🤨Refuse to perform gender: 'Judge me by my results.'"):
             make_choice(-30, 30, -20, 40, "Direct Confrontation: The system pushes back hard.", True)
 
 # final radar plot 
