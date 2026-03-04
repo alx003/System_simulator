@@ -52,7 +52,7 @@ def make_choice(h, a, s, c, msg, is_resistance=False):
     st.session_state.harmony += h
     st.session_state.authenticity += a
     st.session_state.stability += s
-    st.session_state.risk += c
+    st.session_state.cost += c
     for attr in ['harmony', 'authenticity', 'stability', 'cost']:
         st.session_state[attr] = max(0, min(100, st.session_state[attr]))
     
@@ -183,6 +183,6 @@ else:
         st.session_state.harmony = 50
         st.session_state.authenticity = 50
         st.session_state.stability = 50
-        st.session_state.risk = 10
+        st.session_state.cost = 10
         st.session_state.log = []
         st.rerun()
