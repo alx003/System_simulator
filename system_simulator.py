@@ -102,7 +102,7 @@ if st.session_state.step == 0:
     st.markdown("""
     <div class='quote-box'>
     “In China, patriarchy often operates through clearly defined gender expectations... My high school teachers always praised girls for being <b>'quiet and careful'</b>, while praising boys for being <b>'decisive.'</b>”
-    <span class='quote-author'>— Allison Xu, Essay</span>
+    <span class='quote-author'>— Allison Xu</span>
     </div>
     """, unsafe_allow_html=True)
     
@@ -122,7 +122,7 @@ elif st.session_state.step == 1:
     st.markdown("""
     <div class='quote-box'>
     “In the US... when I spoke assertively, I felt a subtle shift in tone, raised eyebrows, and joking comments about being <b>too 'intense.'</b> The boundary between confidence and 'too much' felt narrow.”
-    <span class='quote-author'>— Allison Xu, Essay</span>
+    <span class='quote-author'>— Allison Xu</span>
     </div>
     """, unsafe_allow_html=True)
     
@@ -142,7 +142,7 @@ elif st.session_state.step == 2:
     st.markdown("""
     <div class='quote-box'>
     “The consequences are diffuse: <b>an awkward silence, a strained smile</b>, or a shift in group dynamics that is difficult to name but easy to feel... these small social signals teach us which behaviors are rewarded.”
-    <span class='quote-author'>— Allan G. Johnson / Essay</span>
+    <span class='quote-author'>— Allan G. Johnson</span>
     </div>
     """, unsafe_allow_html=True)
 
@@ -162,7 +162,7 @@ elif st.session_state.step == 3:
     st.markdown("""
     <div class='quote-box'>
     “No matter how kind the players are, the structure of the game pushes them toward <b>accumulation and domination</b>... asking players to be nicer cannot fundamentally alter the game.”
-    <span class='quote-author'>— Allan G. Johnson (Chapter 4)</span>
+    <span class='quote-author'>— Allan G. Johnson</span>
     </div>
     """, unsafe_allow_html=True)
 
