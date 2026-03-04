@@ -1,42 +1,64 @@
 import streamlit as st
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="The Gender Knot Simulator", layout="wide")
+st.set_page_config(page_title="System Logic Simulator", layout="wide")
 
 st.markdown("""
     <style>
-    @keyframes shake {
-      0% { transform: translate(1px, 1px) rotate(0deg); }
-      20% { transform: translate(-3px, 0px) rotate(1deg); }
-      40% { transform: translate(3px, 2px) rotate(0deg); }
-      60% { transform: translate(1px, -1px) rotate(1deg); }
-      100% { transform: translate(1px, -2px) rotate(0deg); }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:italic,wght@600&display=swap');
+    
+    .main { background-color: #fcfcfc; font-family: 'Inter', sans-serif; }
+    h1 { font-family: 'Playfair Display', serif; color: #1a1a1a; font-size: 3rem !important; }
+    .stMetric { background: rgba(255, 255, 255, 0.8); border-radius: 10px; padding: 15px; border: 1px solid #eee; }
+    
+    .quote-box {
+        padding: 20px;
+        border-left: 5px solid #1a1a1a;
+        background: #f7f7f7;
+        font-style: italic;
+        margin: 20px 0;
+        color: #444;
     }
-    .shake { animation: shake 0.5s; color: #FF4B4B; font-weight: bold; }
-    .stButton>button { width: 100%; border-radius: 5px; height: 3em; }
+
+    /* 阻力路径动画 */
+    @keyframes resistance-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 75, 75, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(255, 75, 75, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 75, 75, 0); }
+    }
+    .resistance-btn { animation: resistance-pulse 2s infinite; }
+    
+    .stButton>button { 
+        border-radius: 2px; 
+        height: 3.5em; 
+        transition: all 0.3s; 
+        border: 1px solid #ddd;
+        font-weight: 500;
+    }
     </style>
     """, unsafe_allow_html=True)
 
+
+# initial state
 if 'step' not in st.session_state:
     st.session_state.step = 0
     st.session_state.harmony = 50      
     st.session_state.authenticity = 50 
     st.session_state.stability = 50    
-    st.session_state.risk = 10         
+    st.session_state.cost = 10         
     st.session_state.log = []
 
-def make_choice(h, a, s, r, msg, is_resistance=False):
+def make_choice(h, a, s, c, msg, is_resistance=False):
     st.session_state.harmony += h
     st.session_state.authenticity += a
     st.session_state.stability += s
-    st.session_state.risk += r
-    for attr in ['harmony', 'authenticity', 'stability', 'risk']:
+    st.session_state.risk += c
+    for attr in ['harmony', 'authenticity', 'stability', 'cost']:
         st.session_state[attr] = max(0, min(100, st.session_state[attr]))
     
     label = "RESISTANCE" if is_resistance else "COMPLIANCE"
     color = "red" if is_resistance else "green"
-    shake_class = "shake" if is_resistance else ""
-    st.session_state.log.append(f"<div class='{shake_class}' style='color:{color}'>[{label}] {msg}</div>")
+    st.session_state.log.append(f"<div style='color:{color};margin-bottom:10px;'><b>{prefix}</b> {msg}</div>")
     st.session_state.step += 1
 
 st.title("🤓The Systemic Logic Simulator: Unraveling the Knot")
@@ -44,10 +66,13 @@ st.write("---")
 
 with st.sidebar:
     st.header("🕵️ System Diagnostics")
+    st.markdown('*System shape us by creating "paths of least resistance".*')
+    st.write("---")
+    
     st.metric("Social Harmony", st.session_state.harmony)
     st.metric("Personal Authenticity", st.session_state.authenticity)
     st.metric("System Stability", st.session_state.stability)
-    st.metric("Social Risk Score", st.session_state.risk)
+    st.metric("Social Cost Score", st.session_state.cost)
     st.write("---")
     st.write("**Simulation Log:**")
     for l in reversed(st.session_state.log):
@@ -124,9 +149,9 @@ elif st.session_state.step == 4:
 else:
     st.header("🏁 Final Systemic Analysis")
     
-    categories = ['Social Harmony', 'Authenticity', 'System Stability', 'Social Risk']
+    categories = ['Social Harmony', 'Authenticity', 'System Stability', 'Social Cost']
     values = [st.session_state.harmony, st.session_state.authenticity, 
-              st.session_state.stability, st.session_state.risk]
+              st.session_state.stability, st.session_state.cost]
     
     fig = go.Figure()
     fig.add_trace(go.Scatterpolar(
@@ -134,16 +159,20 @@ else:
         theta=categories + [categories[0]],
         fill='toself',
         name='Your Path',
-        line_color='red'
+        line_color='#1a1a1a',
+        fillcolor='rgba(26, 26, 26, 0.2)'
     ))
     fig.update_layout(
         polar=dict(radialaxis=dict(visible=True, range=[0, 100])),
         showlegend=False,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
         title="Your Identity Map within Patriarchy"
     )
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width = True)
     
     st.write("### Observation:")
+    
     if st.session_state.stability > 60:
         st.error("SYSTEM STATUS: STABLE🙂. Your choices reinforced the 'Paths of Least Resistance'. The game of Monopoly continues.")
     else:
